@@ -1,10 +1,26 @@
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE User;
+DROP TABLE Fiscal;
+DROP TABLE Edificio;
+DROP TABLE Alugavel;
+DROP TABLE Arrenda;
+DROP TABLE Fiscaliza;
+DROP TABLE Espaco;
+DROP TABLE Reserva;
+DROP TABLE Posto;
+DROP TABLE Oferta;
+DROP TABLE Aluga;
+DROP TABLE Paga;
+DROP TABLE Estado;
+SET FOREIGN_KEY_CHECKS = 1;
+
 CREATE TABLE User
 (
 nif int NOT NULL,
 nome varchar(255) NOT NULL,
 telefone int NOT NULL,
 
-PRIMARY KEY nif
+PRIMARY KEY (nif)
 );
 
 CREATE TABLE Fiscal
@@ -13,107 +29,133 @@ id int NOT NULL,
 empresa varchar(255) NOT NULL,
 
 
-PRIMARY KEY id
+PRIMARY KEY (id)
+
 );
 
 CREATE TABLE Edificio
 (
 morada varchar(255) NOT NULL,
 
-PRIMARY KEY morada
+PRIMARY KEY (morada)
+
 
 );
 
-CREATE TABLE Alugável
+CREATE TABLE Alugavel
 (
 morada varchar(255) NOT NULL,
-código int NOT NULL,
+codigo int NOT NULL,
 foto varchar(255) NOT NULL,
 
-PRIMARY KEY (morada,código),
+PRIMARY KEY (morada,codigo),
 FOREIGN KEY (morada) REFERENCES Edificio(morada)
+ON DELETE CASCADE
 
 );
 
 CREATE TABLE Arrenda
 (
 morada varchar(255) NOT NULL,
-código int NOT NULL,
+codigo int NOT NULL,
 nif int NOT NULL,
 
-PRIMARY KEY (morada,código),
-FOREIGN KEY (morada,código) REFERENCES Alugável(morada,código),
-FOREIGN KEY (nif) REFERENCES User(nif)
+PRIMARY KEY (morada,codigo),
+FOREIGN KEY (morada,codigo) REFERENCES Alugavel(morada,codigo) ON DELETE CASCADE,
+FOREIGN KEY (nif) REFERENCES User(nif) ON DELETE CASCADE
 
-);
+
+);	
 
 CREATE TABLE Fiscaliza
 (
 id int NOT NULL,
 morada varchar(255) NOT NULL,
-código int NOT NULL,
+codigo int NOT NULL,
 
-PRIMARY KEY (id,morada,código),
-FOREIGN KEY (id) REFERENCES Fiscal(id),
-FOREIGN KEY(morada,código) REFERENCES Arrenda(morada,código)
-
+PRIMARY KEY (id,morada,codigo),
+FOREIGN KEY (id) REFERENCES Fiscal(id) ON DELETE CASCADE,
+FOREIGN KEY(morada,codigo) REFERENCES Arrenda(morada,codigo)
+ON DELETE CASCADE
 );
 
-CREATE TABLE Espaço
+CREATE TABLE Espaco
 (
 morada varchar(255) NOT NULL,
-código int NOT NULL,
-PRIMARY KEY(morada,código),
-FOREIGN KEY(morada,código) REFERENCES Alugável(morada,código)
-)
+codigo int NOT NULL,
+PRIMARY KEY(morada,codigo),
+FOREIGN KEY(morada,codigo) REFERENCES Alugavel(morada,codigo)
+ON DELETE CASCADE
+);
 
 CREATE TABLE Posto
 (
 
 morada varchar(255) NOT NULL,
-código int NOT NULL,
-código_espaço int NOT NULL,
+codigo int NOT NULL,
+codigo_espaco int NOT NULL,
 
-PRIMARY KEY (morada,código),
-FOREIGN KEY(morada,código) REFERENCES Alugável(morada,código),
-FOREIGN KEY(morada,código_espaço) REFERENCES Espaço(morada,código)
-
-)
+PRIMARY KEY (morada,codigo),
+FOREIGN KEY(morada,codigo) REFERENCES Alugavel(morada,codigo) ON DELETE CASCADE,
+FOREIGN KEY(morada,codigo_espaco) REFERENCES Espaco(morada,codigo)
+ON DELETE CASCADE
+);
 
 CREATE TABLE Oferta
 (
 morada varchar(255) NOT NULL,
-código int NOT NULL,
+codigo int NOT NULL,
 data_inicio date NOT NULL,
 data_fim date NOT NULL,
 tarifa varchar(255) NOT NULL,
 
-PRIMARY KEY (morada,código,data_inicio),
-FOREIGN KEY (morada,código) REFERENCES Alugável(morada,código)
-)
+PRIMARY KEY (morada,codigo,data_inicio),
+FOREIGN KEY (morada,codigo) REFERENCES Alugavel(morada,codigo)
+ON DELETE CASCADE
+);
+
+CREATE TABLE Reserva
+(
+numero int NOT NULL, 
+
+PRIMARY KEY (numero)
+);
 
 CREATE TABLE Aluga
 (
 morada varchar(255) NOT NULL,
-código int NOT NULL,
+codigo int NOT NULL,
 data_inicio date NOT NULL,
 nif int NOT NULL,
-número int NOT NULL,
-PRIMARY KEY (morada,código,data_inicio,nif,número),
-FOREIGN KEY(morada,código,data_inicio) REFERENCES Oferta(morada,código,data_inicio),
-FOREIGN KEY nif REFERENCES User(nif),
-FOREIGN KEY número REFERENCES Reserva(número)
-)
+numero int NOT NULL,
+PRIMARY KEY (morada,codigo,data_inicio,nif,numero),
+FOREIGN KEY(morada,codigo,data_inicio) REFERENCES Oferta(morada,codigo,data_inicio) ON DELETE CASCADE,
+FOREIGN KEY (nif) REFERENCES User(nif) ON DELETE CASCADE,
+FOREIGN KEY (numero) REFERENCES Reserva(numero) ON DELETE CASCADE 
+
+);
 
 CREATE TABLE Paga
 (
-número int NOT NULL,
+numero int NOT NULL,
 data date NOT NULL,
-método varchar(255) NOT NULL,
+metodo varchar(255) NOT NULL,
 
-PRIMARY KEY (número),
-FOREIGN KEY número REFERENCES Reserva(número)
+PRIMARY KEY (numero),
+FOREIGN KEY (numero) REFERENCES Reserva(numero)
+ON DELETE CASCADE
+);
 
-)
+CREATE TABLE Estado
+(
+numero int NOT NULL,
+tempo date NOT NULL,
+estado varchar(255),
+
+PRIMARY KEY(numero,tempo),
+FOREIGN KEY(numero) REFERENCES Reserva(numero)
+ON DELETE CASCADE
+);
+
 
 

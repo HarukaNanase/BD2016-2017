@@ -105,7 +105,7 @@ CREATE TABLE Oferta
 (
 morada varchar(255) NOT NULL,
 codigo int NOT NULL,
-data_inicio date NOT NULL,
+data_inicio datetime NOT NULL,
 data_fim date NOT NULL,
 tarifa varchar(255) NOT NULL,
 
@@ -125,7 +125,7 @@ CREATE TABLE Aluga
 (
 morada varchar(255) NOT NULL,
 codigo int NOT NULL,
-data_inicio date NOT NULL,
+data_inicio datetime NOT NULL,
 nif int NOT NULL,
 numero int NOT NULL,
 PRIMARY KEY (morada,codigo,data_inicio,nif,numero),
@@ -138,7 +138,7 @@ FOREIGN KEY (numero) REFERENCES Reserva(numero) ON DELETE CASCADE
 CREATE TABLE Paga
 (
 numero int NOT NULL,
-data date NOT NULL,
+data datetime NOT NULL,
 metodo varchar(255) NOT NULL,
 
 PRIMARY KEY (numero),
@@ -149,7 +149,7 @@ ON DELETE CASCADE
 CREATE TABLE Estado
 (
 numero int NOT NULL,
-tempo date NOT NULL,
+tempo datetime NOT NULL,
 estado varchar(255),
 
 PRIMARY KEY(numero,tempo),

@@ -5,10 +5,10 @@ BEGIN
 declare ultimo datetime;
 declare aintroduzir datetime;
 
-SELECT max(tempo) from Estado where numero = new.numero into ultimo;
-/*insert into Teste values (ultimo, new.tempo, timestampdiff(second,ultimo,new.tempo));
+SELECT max(`timestamp`) from Estado where numero = new.numero into ultimo;
+/*insert into Teste values (ultimo, new.`data`, timestampdiff(second,ultimo,new.`data`));
 */
-IF timestampdiff(second,ultimo,new.tempo) <= 0
+IF timestampdiff(second,ultimo,new.`data`) <= 0
 THEN
 CALL raise_error;
 END IF;

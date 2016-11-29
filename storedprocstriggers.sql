@@ -3,7 +3,6 @@ delimiter //
 CREATE TRIGGER lastState before insert on Paga FOR EACH ROW
 BEGIN
 declare ultimo datetime;
-declare aintroduzir datetime;
 
 SELECT max(`timestamp`) from Estado where numero = new.numero into ultimo;
 /*insert into Teste values (ultimo, new.`data`, timestampdiff(second,ultimo,new.`data`));

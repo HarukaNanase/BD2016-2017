@@ -3,21 +3,21 @@
 
 /*User(​nif​, nome, telefone)*/
 
-insert into User values(249498065, 'Mateus Oliveira', 212539316);
-insert into User values(251763730, 'Camila Sousa', 218153173);
-insert into User values(244393630, 'Vinicius Pereira', 212294309);
-insert into User values(215119479, 'Carla Dias', 243312872);
-insert into User values(226856780, 'Isabelle Santos', 229430957);
-insert into User values(281264317, 'Matilde Almeida', 223722404);
-insert into User values(220385882, 'Diogo Melo', 243879317);
-insert into User values(236693638, 'Leonardo Goncalves', 253448060);
-insert into User values(224072404, 'Yasmin Castro', 232774870);
-insert into User values(284527130, 'Rafael Dias', 234870072);
-insert into User values(200549383, 'Eduarda Pereira', 271297735);
-insert into User values(256418829, 'Gustavo Ribeiro', 253772056);
-insert into User values(296066532, 'Tiago Cardoso ', 253539178);
-insert into User values(254121080, 'Julia Ribeiro', 212893435);
-insert into User values(239465601, 'Ana Azevedo', 212738980);
+insert into User values(212539316, 'Mateus Oliveira', 249498065);
+insert into User values(218153173, 'Camila Sousa', 251763730);
+insert into User values(212294309, 'Vinicius Pereira', 244393630);
+insert into User values(243312872, 'Carla Dias', 215119479);
+insert into User values(229430957, 'Isabelle Santos', 226856780);
+insert into User values(223722404, 'Matilde Almeida', 281264317);
+insert into User values(243879317, 'Diogo Melo', 220385882);
+insert into User values(253448060, 'Leonardo Goncalves', 236693638);
+insert into User values(232774870, 'Yasmin Castro', 224072404);
+insert into User values(234870072, 'Rafael Dias', 284527130);
+insert into User values(271297735, 'Eduarda Pereira', 200549383);
+insert into User values(253772056, 'Gustavo Ribeiro', 256418829);
+insert into User values(253539178, 'Tiago Cardoso ', 296066532);
+insert into User values(212893435, 'Julia Ribeiro', 254121080);
+insert into User values(212738980, 'Ana Azevedo', 239465601);
 
 
 

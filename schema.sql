@@ -138,7 +138,7 @@ FOREIGN KEY (numero) REFERENCES Reserva(numero) ON DELETE CASCADE
 CREATE TABLE Paga
 (
 numero int NOT NULL,
-data datetime NOT NULL,
+tempo datetime NOT NULL,
 metodo varchar(255) NOT NULL,
 
 PRIMARY KEY (numero),

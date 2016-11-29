@@ -138,7 +138,7 @@ FOREIGN KEY (numero) REFERENCES Reserva(numero) ON DELETE CASCADE
 CREATE TABLE Paga
 (
 numero int NOT NULL,
-"data" datetime NOT NULL,
+`data` datetime NOT NULL,
 metodo varchar(255) NOT NULL,
 
 PRIMARY KEY (numero),
@@ -149,10 +149,10 @@ ON DELETE CASCADE
 CREATE TABLE Estado
 (
 numero int NOT NULL,
-"timestamp" datetime NOT NULL,
+`timestamp` datetime NOT NULL,
 estado varchar(255),
 
-PRIMARY KEY(numero,tempo),
+PRIMARY KEY(numero,`timestamp`),
 FOREIGN KEY(numero) REFERENCES Reserva(numero)
 ON DELETE CASCADE
 );

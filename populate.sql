@@ -1,268 +1,233 @@
-/* populate relations */
 
 
-/*User(​nif​, nome, telefone)*/
-
-insert into User values(212539316, 'Mateus Oliveira', 249498065);
-insert into User values(218153173, 'Camila Sousa', 251763730);
-insert into User values(212294309, 'Vinicius Pereira', 244393630);
-insert into User values(243312872, 'Carla Dias', 215119479);
-insert into User values(229430957, 'Isabelle Santos', 226856780);
-insert into User values(223722404, 'Matilde Almeida', 281264317);
-insert into User values(243879317, 'Diogo Melo', 220385882);
-insert into User values(253448060, 'Leonardo Goncalves', 236693638);
-insert into User values(232774870, 'Yasmin Castro', 224072404);
-insert into User values(234870072, 'Rafael Dias', 284527130);
-insert into User values(271297735, 'Eduarda Pereira', 200549383);
-insert into User values(253772056, 'Gustavo Ribeiro', 256418829);
-insert into User values(253539178, 'Tiago Cardoso ', 296066532);
-insert into User values(212893435, 'Julia Ribeiro', 254121080);
-insert into User values(212738980, 'Ana Azevedo', 239465601);
-
-
-
-/*Fiscal(id​, empresa)*/
-
-insert into Fiscal values(1, 'Bypad');
-insert into Fiscal values(2, 'Kizz');
-insert into Fiscal values(3, 'Poloshare');
-insert into Fiscal values(4, 'Masswire');
-insert into Fiscal values(5, 'Powerboo');
-insert into Fiscal values(6, 'Vomega');
-insert into Fiscal values(7, 'Mulite');
-insert into Fiscal values(8, 'Goldentor');
-insert into Fiscal values(9, 'Rengun');
-insert into Fiscal values(10, 'Vefer');
-insert into Fiscal values(11, 'Aslotus');
-insert into Fiscal values(12, 'Gegrow');
-insert into Fiscal values(13, 'Nifit');
-insert into Fiscal values(14, 'Bittie');
-insert into Fiscal values(15, 'Megafor');
-
-
-
-/*Edificio(​morada​)*/
-
-insert into Edificio values('Rua Bacelo n.68');
-insert into Edificio values('Rua Caminho Cruz n.57');
-insert into Edificio values('Rua Sardinha n.99');
-insert into Edificio values('Rua Joseph Arlindo Madeira n.62');
-insert into Edificio values('Rua Augusta n.16');
-insert into Edificio values('Avenida Miguel Bombarda n.90');
-insert into Edificio values('Rua Cruzes n.76');
-insert into Edificio values('Rua Doutor Jose Marques n.88');
-insert into Edificio values('Rua Padre Antonio Vieira n.94'); /*posto*/
-insert into Edificio values('Rua Engenheiro Duarte Pacheco n.22'); /*posto*/
-insert into Edificio values('Avenida Visconde Valmor n.101'); /*posto*/
-insert into Edificio values('Avenida Marques Tomar n.2'); /*posto*/
-insert into Edificio values('Rua Mouco n.68'); /*posto*/
-insert into Edificio values('Rua Alferes Veiga Pestana n.84'); /*posto*/
-insert into Edificio values('Avenida Guerra Junqueiro n.115'); /*posto*/
-
-
-
-/*Alugavel(​morada, código​, foto)
-			morada: FK(Edificio)*/
-
-insert into Alugavel values('Rua Caminho Cruz n.57', 1, 'Foto 1');
-insert into Alugavel values('Avenida Miguel Bombarda n.90', 2, 'Foto 2');
-insert into Alugavel values('Rua Mouco n.68', 3, 'Foto 3');
-insert into Alugavel values('Rua Cruzes n.76', 4, 'Foto 4');
-insert into Alugavel values('Rua Joseph Arlindo Madeira n.62', 5, 'Foto 5');
-insert into Alugavel values('Avenida Marques Tomar n.2', 6, 'Foto 6');
-insert into Alugavel values('Rua Alferes Veiga Pestana n.84', 7, 'Foto 7');
-insert into Alugavel values('Rua Augusta n.16', 8, 'Foto 8');
-insert into Alugavel values('Rua Sardinha n.99', 9, 'Foto 9');
-insert into Alugavel values('Rua Bacelo n.68', 10, 'Foto 10');
-insert into Alugavel values('Rua Padre Antonio Vieira n.94', 11, 'Foto 11');
-insert into Alugavel values('Rua Augusta n.16', 12, 'Foto 12');
-insert into Alugavel values('Avenida Marques Tomar n.2', 13, 'Foto 13');
-insert into Alugavel values('Rua Engenheiro Duarte Pacheco n.22', 14, 'Foto 14');
-insert into Alugavel values('Rua Joseph Arlindo Madeira n.62', 15, 'Foto 15');
-
-
-
-/*Arrenda(​morada, código​ , nif)
-			morada, código: FK(Alugavel)
-			nif: FK(User)*/
-
-insert into Arrenda values('Avenida Marques Tomar n.2', 6, 229430957);
-insert into Arrenda values('Avenida Miguel Bombarda n.90', 2, 253539178);
-insert into Arrenda values('Rua Mouco n.68', 3, 212294309);
-insert into Arrenda values('Rua Cruzes n.76', 4, 212738980);
-insert into Arrenda values('Rua Joseph Arlindo Madeira n.62', 5, 253772056);
-insert into Arrenda values('Rua Joseph Arlindo Madeira n.62', 15, 243879317);
-insert into Arrenda values('Avenida Marques Tomar n.2', 13, 212893435);
-insert into Arrenda values('Rua Alferes Veiga Pestana n.84', 7, 218153173);
-insert into Arrenda values('Rua Augusta n.16', 8, 243312872);
-insert into Arrenda values('Rua Sardinha n.99', 9, 223722404);
-insert into Arrenda values('Rua Bacelo n.68', 10, 232774870);
-insert into Arrenda values('Rua Caminho Cruz n.57', 1, 212539316);
-insert into Arrenda values('Rua Padre Antonio Vieira n.94', 11, 253448060);
-insert into Arrenda values('Rua Augusta n.16', 12, 234870072);
-insert into Arrenda values('Rua Engenheiro Duarte Pacheco n.22', 14, 271297735);
-
-
-
-/*Fiscaliza(​id, morada, código​)
-			id: FK(Fiscal)
-			morada, código: FK(Arrenda)*/
-
-insert into Fiscaliza values(1, 'Avenida Marques Tomar n.2', 6);
-insert into Fiscaliza values(2, 'Rua Joseph Arlindo Madeira n.62', 5);
-insert into Fiscaliza values(3, 'Rua Engenheiro Duarte Pacheco n.22', 14);
-insert into Fiscaliza values(4, 'Rua Augusta n.16', 8);
-insert into Fiscaliza values(5, 'Rua Cruzes n.76', 4);
-insert into Fiscaliza values(6, 'Rua Augusta n.16', 12);
-insert into Fiscaliza values(7, 'Rua Mouco n.68', 3);
-insert into Fiscaliza values(8, 'Avenida Marques Tomar n.2', 13);
-insert into Fiscaliza values(9, 'Rua Sardinha n.99', 9);
-insert into Fiscaliza values(10, 'Rua Joseph Arlindo Madeira n.62', 15);
-insert into Fiscaliza values(11, 'Rua Caminho Cruz n.57', 1);
-insert into Fiscaliza values(12, 'Avenida Miguel Bombarda n.90', 2);
-insert into Fiscaliza values(13, 'Rua Padre Antonio Vieira n.94', 11);
-insert into Fiscaliza values(14, 'Rua Bacelo n.68', 10);
-insert into Fiscaliza values(15, 'Rua Alferes Veiga Pestana n.84', 7);
-
-
-
-/*Espaço(​morada, código​)
-			morada, código: FK(Alugavel)*/
-
-insert into Espaco values('Rua Caminho Cruz n.57', 1);
-insert into Espaco values('Avenida Miguel Bombarda n.90', 2);
-insert into Espaco values('Rua Mouco n.68', 3);
-insert into Espaco values('Rua Cruzes n.76', 4);
-insert into Espaco values('Rua Joseph Arlindo Madeira n.62', 5);
-insert into Espaco values('Avenida Marques Tomar n.2', 6);
-insert into Espaco values('Rua Alferes Veiga Pestana n.84', 7);
-insert into Espaco values('Rua Augusta n.16', 8);
-insert into Espaco values('Rua Sardinha n.99', 9);
-insert into Espaco values('Rua Bacelo n.68', 10);
-insert into Espaco values('Rua Padre Antonio Vieira n.94', 11);
-insert into Espaco values('Rua Augusta n.16', 12);
-insert into Espaco values('Avenida Marques Tomar n.2', 13);
-insert into Espaco values('Rua Engenheiro Duarte Pacheco n.22', 14);
-insert into Espaco values('Rua Joseph Arlindo Madeira n.62', 15);
+<!DOCTYPE html>
 
 
 
 
-/*Posto(​morada, código​ , código_espaço)
-			morada, código: FK(Alugável)
-			morada, código_espaço: FK(Espaço)*/
-
-insert into Posto values('Rua Caminho Cruz n.57', 1, 1);
-insert into Posto values('Avenida Miguel Bombarda n.90', 2, 2);
-insert into Posto values('Rua Mouco n.68', 3, 3);
-insert into Posto values('Rua Cruzes n.76', 4, 4);
-insert into Posto values('Rua Joseph Arlindo Madeira n.62', 5, 5);
-insert into Posto values('Avenida Marques Tomar n.2', 6, 6);
-insert into Posto values('Rua Alferes Veiga Pestana n.84', 7, 7);
-insert into Posto values('Rua Augusta n.16', 8, 8);
-insert into Posto values('Rua Sardinha n.99', 9, 9);
-insert into Posto values('Rua Bacelo n.68', 10, 10);
-insert into Posto values('Rua Padre Antonio Vieira n.94', 11, 11);
-insert into Posto values('Rua Augusta n.16', 12, 12);
-insert into Posto values('Avenida Marques Tomar n.2', 13, 13);
-insert into Posto values('Rua Engenheiro Duarte Pacheco n.22', 14, 14);
-insert into Posto values('Rua Joseph Arlindo Madeira n.62', 15, 15);
-
-
-
-/*Oferta(​morada, código, data_inicio​ data_fim, tarifa)
-			morada, código: FK(alugável)*/
-
-insert into Oferta values('Rua Caminho Cruz n.57', 1, '2012-12-20 00:00:00', '2012-12-27 00:00:00', 'semanal');
-insert into Oferta values('Avenida Miguel Bombarda n.90', 2, '2013-01-01 00:00:00', '2013-02-01 00:00:00', 'mensal');
-insert into Oferta values('Rua Mouco n.68', 3, '2013-03-10 00:00:00', '2013-04-10 00:00:00', 'mensal');
-insert into Oferta values('Rua Cruzes n.76', 4, '2013-04-10 00:00:00', '2013-04-17 00:00:00', 'semanal');
-insert into Oferta values('Rua Joseph Arlindo Madeira n.62', 5, '2013-05-16 00:00:00', '2012-05-21 00:00:00', 'semanal');
-insert into Oferta values('Avenida Marques Tomar n.2', 6, '2014-06-07 00:00:00', '2014-07-07 00:00:00', 'mensal');
-insert into Oferta values('Rua Alferes Veiga Pestana n.84', 7, '2014-03-12 00:00:00', '2014-03-17 00:00:00', 'semanal');
-insert into Oferta values('Rua Augusta n.16', 8, '2012-11-20 00:00:00', '2012-12-20 00:00:00', 'mensal');
-insert into Oferta values('Rua Sardinha n.99', 9, '2015-06-30 00:00:00', '2015-07-30 00:00:00', 'mensal');
-insert into Oferta values('Rua Bacelo n.68', 10, '2016-08-11 00:00:00', '2016-08-18 00:00:00', 'semanal');
-insert into Oferta values('Rua Padre Antonio Vieira n.94', 11, '2016-03-02 00:00:00', '2016-04-02 00:00:00', 'mensal');
-insert into Oferta values('Rua Augusta n.16', 12, '2015-10-10 00:00:00', '2015-10-17 00:00:00', 'semanal');
-insert into Oferta values('Avenida Marques Tomar n.2', 13, '2013-02-03 00:00:00', '2013-02-10 00:00:00', 'semanal');
-insert into Oferta values('Rua Engenheiro Duarte Pacheco n.22', 14, '2012-04-20 00:00:00', '2012-05-20 00:00:00', 'mensal');
-insert into Oferta values('Rua Joseph Arlindo Madeira n.62', 15, '2015-09-04 00:00:00', '2015-09-11 00:00:00', 'semanal');
-
-
-
-/*Reserva(​número​ )*/
-
-insert into Reserva values(1);
-insert into Reserva values(2);
-insert into Reserva values(3);
-insert into Reserva values(4);
-insert into Reserva values(5);
-insert into Reserva values(6);
-insert into Reserva values(7);
-insert into Reserva values(8);
-insert into Reserva values(9);
-insert into Reserva values(10);
-insert into Reserva values(11);
-insert into Reserva values(12);
-insert into Reserva values(13);
-insert into Reserva values(14);
-insert into Reserva values(15);
-
-
-
-/*Aluga(​morada, código, data_inicio, nif, número​ )
-		morada, código, data-inicio: FK(Oferta)
-		nif: FK(User)
-		número: FK(Reserva)*/
-
-insert into Aluga values('Rua Caminho Cruz n.57', 1, '2012-12-20 00:00:00', 212539316, 1);
-insert into Aluga values('Avenida Miguel Bombarda n.90', 2, '2013-01-01 00:00:00', 253539178, 2);
-insert into Aluga values('Rua Mouco n.68', 3, '2013-03-10 00:00:00', 212294309, 3);
-insert into Aluga values('Rua Cruzes n.76', 4, '2013-04-10 00:00:00', 212738980, 4);
-insert into Aluga values('Rua Joseph Arlindo Madeira n.62', 5, '2013-05-16 00:00:00', 253772056, 5);
-insert into Aluga values('Avenida Marques Tomar n.2', 6, '2014-06-07 00:00:00', 229430957, 6);
-insert into Aluga values('Rua Alferes Veiga Pestana n.84', 7, '2014-03-12 00:00:00', 218153173, 7);
-insert into Aluga values('Rua Augusta n.16', 8, '2012-11-20 00:00:00', 243312872, 8);
-insert into Aluga values('Rua Sardinha n.99', 9, '2015-06-30 00:00:00', 223722404, 9);
-insert into Aluga values('Rua Bacelo n.68', 10, '2016-08-11 00:00:00', 232774870, 10);
-insert into Aluga values('Rua Padre Antonio Vieira n.94', 11, '2016-03-02 00:00:00', 253448060, 11);
-insert into Aluga values('Rua Augusta n.16', 12, '2015-10-10 00:00:00', 234870072, 12);
-insert into Aluga values('Avenida Marques Tomar n.2', 13, '2013-02-03 00:00:00', 212893435, 13);
-insert into Aluga values('Rua Engenheiro Duarte Pacheco n.22', 14, '2012-04-20 00:00:00', 271297735, 14);
-insert into Aluga values('Rua Joseph Arlindo Madeira n.62', 15, '2015-09-04 00:00:00', 243879317, 15);
-
-
-
-/*Paga(​número​ , data, método)
-		número: FK(Reserva)*/
-
-insert into Paga values(1, '2012-12-23 00:00:00', 'multibanco');
-insert into Paga values(2, '2013-01-07 00:00:00', 'dinheiro');
-insert into Paga values(3, '2013-03-15 00:00:00','dinheiro');
-insert into Paga values(4, '2013-04-19 00:00:00','multibanco');
-insert into Paga values(5, '2013-05-18 00:00:00','multibanco');
-insert into Paga values(6, '2014-06-10 00:00:00','dinheiro');
-insert into Paga values(7, '2014-03-20 00:00:00','multibanco');
 
 
 
 
-/*Estado(​número, timestamp​ , estado)
-			número: FK(Reserva)*/
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>
+		
+			
+			
+				Técnico Lisboa - Autenticação
+			
+		
+	</title>
+	<meta name="author" content="">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	
+	<!-- Favicon to work in all desktop browsers: -->
+	<link rel="shortcut icon" href="//static.tecnico.ulisboa.pt/favicon.png" type="image/png">
+	<!-- Touch icon for iOS 2.0+: -->
+	<link rel="apple-touch-icon-precomposed" sizes="180x180" href="//static.tecnico.ulisboa.pt/apple-touch-icon-180x180-precomposed.png">
+	<!-- Touch icon for Android -->
+	<link rel="apple-touch-icon-precomposed" href="//static.tecnico.ulisboa.pt/apple-touch-icon-144x144-precomposed.png">
+	
+	<!-- Google web fonts -->
+	<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+	
+	<link rel="stylesheet" href="/cas/css/cas.min.css" />
+	
+	<!-- HTML5 elements and Media queries support IE8 and below -->
+	<!--[if lt IE 9]>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
+	<![endif]-->
+</head>
 
-insert into Estado values(1, '2012-12-23 00:00:00', 'Pendente');
-insert into Estado values(2, '2013-01-07 00:00:00', 'Pendente');
-insert into Estado values(3, '2013-03-10 00:00:00','Aceite');
-insert into Estado values(4, '2013-04-10 00:00:00','Pendente');
-insert into Estado values(5, '2013-05-16 00:00:00','Aceite');
-insert into Estado values(6, '2014-06-07 00:00:00','Aceite');
-insert into Estado values(7, '2014-03-12 00:00:00','Aceite');
-insert into Estado values(8, '2012-11-20 00:00:00','Declinada');
-insert into Estado values(9, '2015-06-30 00:00:00','Cancelada');
-insert into Estado values(10, '2016-08-11 00:00:00','Cancelada');
-insert into Estado values(11, '2016-03-02 00:00:00','Declinada');
-insert into Estado values(12, '2015-10-10 00:00:00','Cancelada');
-insert into Estado values(13, '2013-02-03 00:00:00','Aceite');
-insert into Estado values(14, '2012-04-20 00:00:00','Declinada');
-insert into Estado values(15, '2015-09-04 00:00:00','Declinada');
+<body>
+	<!--[if lt IE 9]>
+		<p class="outdatedbrowser">Está a usar uma versão <strong>desatualizada</strong> do seu browser. Por favor <a href="http://outdatedbrowser.com/">atualize-o</a> para melhorar a sua experiência.</p>
+	<![endif]-->
+	
+	
+	
+	
+		<div id="bg" style="background-image: url(//static.tecnico.ulisboa.pt/projects/tecnico-id/bg-02-blur.jpg); background-size:cover; background-repeat:no-repeat;"></div>
+	
+	
+	
+	
+	<!-- Page Container -->
+	<div class="center-container container-sm">
+		<header>
+			<h1 class="title"><a href="/cas" tabindex="1">Técnico Lisboa - Autenticação</a></h1>
+		</header>
+		
+		<main>
+			
+
+
+
+
+
+
+
+	<nav id="autenticacao">
+		<ul>
+			<li class="selection-box">
+				Método de Autenticação: <span class="selection-selectedOption">Técnico ID</span>
+			<i class="icon-down-open">&nbsp;</i>
+			<ul class="selection-options">
+				<li data-toggle-selection="istid"><a>Técnico ID</a></li>
+				<li data-toggle-selection="kerberos"><a>Kerberos</a></li>
+				<li data-toggle-selection="cartaocidadao"><a>Cartão de Cidadão</a></li>
+				
+				</ul>
+			</li>
+		</ul>
+	</nav>
+
+
+<form id="credential" action="/cas/login?service=https://fenix.tecnico.ulisboa.pt/downloadFile/1689468335575859/populate.sql" method="post">
+	<!-- Técnico ID -->
+	<fieldset data-selection="istid">
+		<input id="username" name="username" autofocus="autofocus" placeholder="T&eacute;cnico ID" required="required" type="text" value="" size="10"/>
+		 
+		<input id="password" name="password" placeholder="Palavra-passe" required="required" type="password" value="" size="25"/>
+		
+		<p>Ao autenticar-se, está a aceitar as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas</a> dos serviços informáticos do Técnico.</p>
+		
+		
+		
+		
+		<input type="submit" value='Entrar' class="button button-active button-wide"
+			name="submit-istid" id="submit-istid" accessKey="t" >
+	</fieldset>
+	<!-- end fieldset Técnico ID -->
+	
+	
+		<!-- KERBEROS -->
+		<fieldset data-selection="kerberos">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-1">
+						<i class="icon-lock active"></i>
+					</div>
+					<div class="col-xs-11">
+						<p>
+							Requisitos para
+							<a href="https://suporte.dsi.tecnico.ulisboa.pt/categorias/autenticacao-e-acesso/" class="underline">
+								autenticação por via do sistema Kerberos
+							</a>:
+						</p>
+						<ul class="block">
+							<li><span class="icon-right-open-mini"></span>suporte de Kerberos funcional no sistema operativo</li>
+							<li><span class="icon-right-open-mini"></span>aquisição prévia de um TGT</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<p>Ao autenticar-se, está a aceitar as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas</a> dos serviços informáticos do Técnico.</p>
+			<input id="submit-kerberos" name="submit-kerberos" type="button" class="button button-active button-wide"
+				value="Continuar" accessKey="k" autofocus="autofocus"
+				onClick="location.href='/cas/login?service=https://fenix.tecnico.ulisboa.pt/downloadFile/1689468335575859/populate.sql&auth=spnego'">
+		</fieldset>
+		<!-- end KERBEROS -->
+		
+		<!-- CARTÃO CIDADÃO -->
+		<fieldset data-selection="cartaocidadao">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-xs-2">
+						<span class="ccidadao"></span>
+					</div>
+					<div class="col-xs-10">
+						<p>
+							Requisitos para
+							<a href="http://www.cartaodecidadao.pt/documentos/Manual_Cartao_de_Cidadao_v1.26.0.pdf" class="underline">
+								autenticação por via do cartão do cidadão
+							</a>:
+						</p>
+						<ul class="block">
+							<li><span class="icon-right-open-mini"></span>sistema de leitura em funcionamento</li>
+							<li><span class="icon-right-open-mini"></span>cartão introduzido no leitor</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<p>Ao autenticar-se, está a aceitar as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas</a> dos serviços informáticos do Técnico.</p>
+			<input id="submit-ccidadao" name="submit-ccidadao" type="button" class="button button-active button-wide"
+				value="Continuar"  accessKey="c" autofocus="autofocus"
+				onClick="location.href='https://x509.id.tecnico.ulisboa.pt/cas/login?service=https://fenix.tecnico.ulisboa.pt/downloadFile/1689468335575859/populate.sql&auth=x509&language=pt'">
+		</fieldset>
+		<!-- end CARTÃO CIDADÃO -->
+		
+		
+	
+	
+	<input type="hidden" name="lt" value="LT-20040-GZ7I1ByzAkD9BbNPERUfdWSzAH1zSS-id.tecnico.ulisboa.pt" />
+	<input type="hidden" name="execution" value="e2s1" />
+	<input type="hidden" name="_eventId" value="submit" />
+	
+	<!-- Recuperar pass / Nao tenho ISTID -->
+	<ul class="secondary-actions">
+		<li>
+			
+			
+			<a href="/password/recover.php?language=pt">
+				Recuperar palavra-passe
+			</a>
+		</li>
+		<li>
+			<a href="https://suporte.dsi.tecnico.ulisboa.pt/faq/como-e-que-uma-pessoa-externa-ou-convidada-pode-ter-acesso-temporario-aos-servicos-informaticos">
+				Não tenho Técnico ID
+			</a>
+		</li>
+	</ul>
+</form>
+
+<script src="/cas/js/cas.min.js"></script>
+	
+
+
+
+
+		</main>
+		
+		
+		
+		
+		
+		<footer>
+			<nav>
+				<ul>
+					
+						<li><a href="security">Segurança</a></li>
+					
+					<li><a href="https://suporte.dsi.tecnico.ulisboa.pt/categorias/autenticacao-e-acesso/">Suporte</a></li>
+					
+						
+						
+							<li class="right"><a href="?locale=en" class="active icon-globe">English</a></li>
+						
+					
+				</ul>
+			</nav>
+		</footer>
+		
+		<span class="clearfix"></span>
+	</div>
+	
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-182539-47', 'auto');
+		ga('send', 'pageview');
+	</script>
+	<!-- end #container -->
+</body>
+</html>
+

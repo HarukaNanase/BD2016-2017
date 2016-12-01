@@ -1,240 +1,104 @@
+drop table if exists estado;
+drop table if exists paga;
+drop table if exists aluga;
+drop table if exists reserva;
+drop table if exists oferta;
+drop table if exists posto;
+drop table if exists espaco;
+drop table if exists fiscaliza;
+drop table if exists arrenda;
+drop table if exists alugavel;
+drop table if exists edificio;
+drop table if exists fiscal;
+drop table if exists user;
 
 
-<!DOCTYPE html>
+create table user (
+    nif varchar(9) not null unique,
+    nome varchar(80) not null,
+    telefone varchar(26) not null,
+    primary key(nif));
 
+create table fiscal (
+    id int not null unique,
+    empresa varchar(255) not null,
+    primary key(id));
 
+create table edificio (
+    morada varchar(255) not null unique,
+    primary key(morada));
 
+create table alugavel (
+    morada varchar(255) not null,
+    codigo varchar(255) not null,
+    foto varchar(255) not null,
+    primary key(morada, codigo),
+    foreign key(morada) references edificio(morada));
 
+create table arrenda (
+    morada varchar(255) not null,
+    codigo varchar(255) not null,
+    nif varchar(9) not null,
+    primary key(morada, codigo),
+    foreign key(morada, codigo) references alugavel(morada, codigo),
+    foreign key(nif) references user(nif));
 
+create table fiscaliza (
+    id int not null,
+    morada varchar(255) not null ,
+    codigo varchar(255) not null ,
+    primary key(id, morada, codigo),
+    foreign key(morada, codigo) references arrenda(morada, codigo),
+    foreign key(id) references fiscal(id));
 
+create table espaco (
+    morada varchar(255) not null,
+    codigo varchar(255) not null,
+    primary key(morada, codigo),
+    foreign key(morada, codigo) references alugavel(morada, codigo));
 
+create table posto (
+    morada varchar(255) not null,
+    codigo varchar(255) not null,
+    codigo_espaco varchar(255) not null,
+    primary key(morada, codigo),
+    foreign key(morada, codigo) references alugavel(morada, codigo),
+    foreign key(morada, codigo_espaco) references espaco(morada, codigo));
 
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>
-		
-			
-			
-				Técnico Lisboa - Autenticação
-			
-		
-	</title>
-	<meta name="author" content="">
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	
-	<!-- Favicon to work in all desktop browsers: -->
-	<link rel="shortcut icon" href="//static.tecnico.ulisboa.pt/favicon.png" type="image/png">
-	<!-- Touch icon for iOS 2.0+: -->
-	<link rel="apple-touch-icon-precomposed" sizes="180x180" href="//static.tecnico.ulisboa.pt/apple-touch-icon-180x180-precomposed.png">
-	<!-- Touch icon for Android -->
-	<link rel="apple-touch-icon-precomposed" href="//static.tecnico.ulisboa.pt/apple-touch-icon-144x144-precomposed.png">
-	
-	<!-- Google web fonts -->
-	<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
-	
-	<link rel="stylesheet" href="/cas/css/cas.min.css;jsessionid=182B62A45829BA8443CC920ECE5B2722.jvm1" />
-	
-	<!-- HTML5 elements and Media queries support IE8 and below -->
-	<!--[if lt IE 9]>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7/html5shiv.js"></script>
-		<script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.js"></script>
-	<![endif]-->
-</head>
+create table oferta (
+    morada varchar(255) not null,
+    codigo varchar(255) not null,
+    data_inicio date not null,
+    data_fim date not null,
+    tarifa numeric(19,4) not null,
+    primary key(morada, codigo, data_inicio),
+    foreign key(morada, codigo) references alugavel(morada, codigo));
 
-<body>
-	<!--[if lt IE 9]>
-		<p class="outdatedbrowser">Está a usar uma versão <strong>desatualizada</strong> do seu browser. Por favor <a href="http://outdatedbrowser.com/">atualize-o</a> para melhorar a sua experiência.</p>
-	<![endif]-->
-	
-	
-		
-		<script>
-			if(typeof(Storage) !== "undefined") {
-				localStorage.setItem("pt.ulisboa.tecnico.dsi.ImageNumber", 2);	
-			}
-		</script>
-	
-	
-	
-		<div id="bg" style="background-image: url(//static.tecnico.ulisboa.pt/projects/tecnico-id/bg-02-blur.jpg); background-size:cover; background-repeat:no-repeat;"></div>
-	
-	
-	
-	
-	<!-- Page Container -->
-	<div class="center-container container-sm">
-		<header>
-			<h1 class="title"><a href="/cas" tabindex="1">Técnico Lisboa - Autenticação</a></h1>
-		</header>
-		
-		<main>
-			
+create table reserva (
+    numero varchar(255) not null unique,
+    primary key(numero));
 
+create table aluga (
+    morada varchar(255) not null,
+    codigo varchar(255) not null,
+    data_inicio date not null,
+    nif varchar(9) not null,
+    numero varchar(255) not null,
+    primary key(morada, codigo, data_inicio, nif, numero),
+    foreign key(morada, codigo, data_inicio) references oferta(morada, codigo, data_inicio),
+    foreign key(nif) references user(nif),
+    foreign key(numero) references reserva(numero));
 
+create table paga (
+    numero varchar(255) not null unique,
+    data timestamp not null,
+    metodo varchar(255) not null,
+    primary key(numero),
+    foreign key(numero) references reserva(numero));
 
-
-
-
-
-	<nav id="autenticacao">
-		<ul>
-			<li class="selection-box">
-				Método de Autenticação: <span class="selection-selectedOption">Técnico ID</span>
-			<i class="icon-down-open">&nbsp;</i>
-			<ul class="selection-options">
-				<li data-toggle-selection="istid"><a>Técnico ID</a></li>
-				<li data-toggle-selection="kerberos"><a>Kerberos</a></li>
-				<li data-toggle-selection="cartaocidadao"><a>Cartão de Cidadão</a></li>
-				
-				</ul>
-			</li>
-		</ul>
-	</nav>
-
-
-<form id="credential" action="/cas/login;jsessionid=182B62A45829BA8443CC920ECE5B2722.jvm1?service=https://fenix.tecnico.ulisboa.pt/downloadFile/1689468335575858/schema.sql" method="post">
-	<!-- Técnico ID -->
-	<fieldset data-selection="istid">
-		<input id="username" name="username" autofocus="autofocus" placeholder="T&eacute;cnico ID" required="required" type="text" value="" size="10"/>
-		 
-		<input id="password" name="password" placeholder="Palavra-passe" required="required" type="password" value="" size="25"/>
-		
-		<p>Ao autenticar-se, está a aceitar as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas</a> dos serviços informáticos do Técnico.</p>
-		
-		
-		
-		
-		<input type="submit" value='Entrar' class="button button-active button-wide"
-			name="submit-istid" id="submit-istid" accessKey="t" >
-	</fieldset>
-	<!-- end fieldset Técnico ID -->
-	
-	
-		<!-- KERBEROS -->
-		<fieldset data-selection="kerberos">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-xs-1">
-						<i class="icon-lock active"></i>
-					</div>
-					<div class="col-xs-11">
-						<p>
-							Requisitos para
-							<a href="https://suporte.dsi.tecnico.ulisboa.pt/categorias/autenticacao-e-acesso/" class="underline">
-								autenticação por via do sistema Kerberos
-							</a>:
-						</p>
-						<ul class="block">
-							<li><span class="icon-right-open-mini"></span>suporte de Kerberos funcional no sistema operativo</li>
-							<li><span class="icon-right-open-mini"></span>aquisição prévia de um TGT</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<p>Ao autenticar-se, está a aceitar as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas</a> dos serviços informáticos do Técnico.</p>
-			<input id="submit-kerberos" name="submit-kerberos" type="button" class="button button-active button-wide"
-				value="Continuar" accessKey="k" autofocus="autofocus"
-				onClick="location.href='/cas/login?service=https://fenix.tecnico.ulisboa.pt/downloadFile/1689468335575858/schema.sql&auth=spnego'">
-		</fieldset>
-		<!-- end KERBEROS -->
-		
-		<!-- CARTÃO CIDADÃO -->
-		<fieldset data-selection="cartaocidadao">
-			<div class="container-fluid">
-				<div class="row">
-					<div class="col-xs-2">
-						<span class="ccidadao"></span>
-					</div>
-					<div class="col-xs-10">
-						<p>
-							Requisitos para
-							<a href="http://www.cartaodecidadao.pt/documentos/Manual_Cartao_de_Cidadao_v1.26.0.pdf" class="underline">
-								autenticação por via do cartão do cidadão
-							</a>:
-						</p>
-						<ul class="block">
-							<li><span class="icon-right-open-mini"></span>sistema de leitura em funcionamento</li>
-							<li><span class="icon-right-open-mini"></span>cartão introduzido no leitor</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<p>Ao autenticar-se, está a aceitar as <a href="http://dsi.tecnico.ulisboa.pt/normas/" class="underline">normas</a> dos serviços informáticos do Técnico.</p>
-			<input id="submit-ccidadao" name="submit-ccidadao" type="button" class="button button-active button-wide"
-				value="Continuar"  accessKey="c" autofocus="autofocus"
-				onClick="location.href='https://x509.id.tecnico.ulisboa.pt/cas/login?service=https://fenix.tecnico.ulisboa.pt/downloadFile/1689468335575858/schema.sql&auth=x509&language=pt'">
-		</fieldset>
-		<!-- end CARTÃO CIDADÃO -->
-		
-		
-	
-	
-	<input type="hidden" name="lt" value="LT-20030-JGBzO6DCfODFHEj7Cub2bTYLj02uY0-id.tecnico.ulisboa.pt" />
-	<input type="hidden" name="execution" value="e1s1" />
-	<input type="hidden" name="_eventId" value="submit" />
-	
-	<!-- Recuperar pass / Nao tenho ISTID -->
-	<ul class="secondary-actions">
-		<li>
-			
-			
-			<a href="/password/recover.php?language=pt">
-				Recuperar palavra-passe
-			</a>
-		</li>
-		<li>
-			<a href="https://suporte.dsi.tecnico.ulisboa.pt/faq/como-e-que-uma-pessoa-externa-ou-convidada-pode-ter-acesso-temporario-aos-servicos-informaticos">
-				Não tenho Técnico ID
-			</a>
-		</li>
-	</ul>
-</form>
-
-<script src="/cas/js/cas.min.js;jsessionid=182B62A45829BA8443CC920ECE5B2722.jvm1"></script>
-	
-
-
-
-
-		</main>
-		
-		
-		
-		
-		
-		<footer>
-			<nav>
-				<ul>
-					
-						<li><a href="security">Segurança</a></li>
-					
-					<li><a href="https://suporte.dsi.tecnico.ulisboa.pt/categorias/autenticacao-e-acesso/">Suporte</a></li>
-					
-						
-						
-							<li class="right"><a href="?locale=en" class="active icon-globe">English</a></li>
-						
-					
-				</ul>
-			</nav>
-		</footer>
-		
-		<span class="clearfix"></span>
-	</div>
-	
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		ga('create', 'UA-182539-47', 'auto');
-		ga('send', 'pageview');
-	</script>
-	<!-- end #container -->
-</body>
-</html>
-
+create table estado (
+    numero varchar(255) not null,
+    time_stamp timestamp not null,
+    estado varchar(255) not null,
+    primary key(numero, time_stamp),
+    foreign key(numero) references reserva(numero));

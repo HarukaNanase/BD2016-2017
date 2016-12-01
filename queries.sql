@@ -69,6 +69,7 @@ GROUP BY morada,codigo_espaco
 ORDER BY morada;
  
 
+);
 /*
 
 +----------+---------+-----------+
@@ -84,9 +85,7 @@ ORDER BY morada;
 | IST      | DEI     | 1549.6900 |
 | IST      | DEQ     |  929.6900 |
 +----------+---------+-----------+
-9 rows in set (0.29 sec)
--+------------+
-10 rows in set (0.01 sec)
+9 rows in set (0.01 sec)
 
 */
 

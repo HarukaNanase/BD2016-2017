@@ -55,34 +55,37 @@ HAVING vezes = 1;
 
 /* 4 */
 
-SELECT morada,codigo,sum((timestampdiff(day,data_inicio,data_fim)+1)*tarifa) as total_pago
-FROM aluga natural join oferta 
+SELECT morada,codigo,sum((timestampdiff(day,data_inicio,data_fim)+1)*tarifa) as total
+FROM aluga NATURAL JOIN oferta NATURAL JOIN paga NATURAL JOIN espaco
+WHERE YEAR(data) = '2016'
 GROUP BY morada,codigo 
-HAVING concat(morada,codigo)
-NOT IN (SELECT concat(morada,codigo)
-FROM posto)
 UNION
 (
-SELECT morada,codigo_espaco as codigo,sum((timestampdiff(day,data_inicio,data_fim)+1)*tarifa) as total_pago
-FROM aluga natural join oferta natural join posto
+SELECT morada,codigo_espaco as codigo,sum((timestampdiff(day,data_inicio,data_fim)+1)*tarifa) as total
+FROM aluga NATURAL JOIN oferta NATURAL JOIN posto NATURAL JOIN paga
+WHERE YEAR(data) = '2016'
 GROUP BY morada,codigo_espaco
-);
+)
+ORDER BY morada;
+ 
+
 /*
 
-+----------+---------+------------+
-| morada   | codigo  | total_pago |
-+----------+---------+------------+
-| Catolica | Central |   527.0000 |
-| FEUP     | Central |   743.6900 |
-| ISEL     | Central |  5251.0000 |
-| ISEL     | DEI     |   899.0000 |
-| IST      | Central |   619.6900 |
-| IST      | DEG     |  1239.6900 |
-| IST      | DEI     |  2949.4100 |
-| IST      | DEQ     |   929.6900 |
-| Catolica | DMKT    |   186.0000 |
-| FEUP     | DEG     |   775.0000 |
-+----------+---------+------------+
++----------+---------+-----------+
+| morada   | codigo  | total     |
++----------+---------+-----------+
+| Catolica | Central |  527.0000 |
+| Catolica | DMKT    |  186.0000 |
+| FEUP     | DEG     |  775.0000 |
+| FEUP     | Central |  743.6900 |
+| ISEL     | Central | 5251.0000 |
+| IST      | Central |  619.6900 |
+| IST      | DEG     | 1239.6900 |
+| IST      | DEI     | 1549.6900 |
+| IST      | DEQ     |  929.6900 |
++----------+---------+-----------+
+9 rows in set (0.29 sec)
+-+------------+
 10 rows in set (0.01 sec)
 
 */

@@ -3,7 +3,7 @@ SELECT DISTINCT morada, codigo_espaco
 FROM posto
 WHERE codigo not in (SELECT codigo from aluga natural join posto);
 
-/*
+/* RESULTADO
 +--------+---------------+
 | morada | codigo_espaco |
 +--------+---------------+
@@ -24,7 +24,7 @@ FROM (SELECT morada, count(concat(numero,codigo)) AS reservas
 FROM aluga AS C 
 GROUP BY morada)
 AS D);
-/*
+/* RESULTADO
 +--------+----------+
 | morada | reservas |
 +--------+----------+
@@ -36,15 +36,14 @@ AS D);
 
 /* 3 */
 
-
-SELECT nif,nome,count(nif) as vezes 
+SELECT nome,nif 
 FROM ( 
 SELECT morada,nif,nome 
 FROM arrenda NATURAL JOIN fiscaliza NATURAL JOIN user AS B 
 GROUP BY nif,id )AS A
 GROUP BY nif 
 HAVING vezes = 1;
-/*
+/* RESULTADO
 +-----------+-------------+-------+
 | nif       | nome        | vezes |
 +-----------+-------------+-------+
@@ -70,8 +69,7 @@ ORDER BY morada;
  
 
 );
-/*
-
+/* RESULTADO
 +----------+---------+-----------+
 | morada   | codigo  | total     |
 +----------+---------+-----------+
@@ -86,11 +84,26 @@ ORDER BY morada;
 | IST      | DEQ     |  929.6900 |
 +----------+---------+-----------+
 9 rows in set (0.01 sec)
-
 */
 
 
-
-
-
 /* 5 */
+
+SELECT DISTINCT morada, codigo_espaco AS codigo 
+FROM
+(SELECT morada,codigo_espaco, count(concat(morada,codigo)) AS n_postos 
+FROM posto 
+GROUP BY codigo_espaco) AS Q
+NATURAL JOIN
+(SELECT morada,codigo_espaco, count(concat(morada,codigo)) AS n_alugados
+FROM aluga NATURAL JOIN posto AS A
+GROUP BY morada) AS L
+WHERE n_postos = n_alugados;
+
+/* RESULTADO
++----------+--------+
+| morada   | codigo |
++----------+--------+
+| Catolica | DMKT   |
++----------+--------+
+*/

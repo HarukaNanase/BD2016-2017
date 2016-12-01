@@ -37,9 +37,20 @@ AS D);
 /* 3 */
 
 
-
-
-
+SELECT nif,nome,count(nif) as vezes 
+FROM ( 
+SELECT morada,nif,nome 
+FROM arrenda NATURAL JOIN fiscaliza NATURAL JOIN user AS B 
+GROUP BY nif,id )AS A
+GROUP BY nif 
+HAVING vezes = 1;
+/*
++-----------+-------------+-------+
+| nif       | nome        | vezes |
++-----------+-------------+-------+
+| 123456719 | Jorge Poeta |     1 |
++-----------+-------------+-------+
+*/
 
 
 /* 4 */

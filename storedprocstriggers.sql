@@ -19,6 +19,8 @@ END; //
 
 
 
+
+
 DROP TRIGGER IF EXISTS overlappedDates;
 
 delimiter //
@@ -32,26 +34,23 @@ declare exist int default 0;
 SELECT Count(B.codigo)
 FROM (
 		(SELECT codigo,morada, data_inicio, data_fim
-		FROM oferta as O
-        WHERE( O.codigo = new.codigo
+			FROM oferta as O
+			WHERE
+				( O.codigo = new.codigo
 				and O.morada = new.morada
-                and (timestampdiff(second,new.data_fim,new.data_inicio)>0)
-                and 
+				and 
 					(new.data_fim between O.data_inicio AND O.data_fim
 						OR new.data_inicio between O.data_inicio and O.data_fim)
 				OR
 					(O.data_fim between new.data_inicio AND new.data_fim
 						OR O.data_inicio between new.data_inicio and new.data_fim)
-			)
+				)
 		) AS B
 	) into exist;
 
-IF exist > 0 THEN
+IF exist > 0 OR (timestampdiff(second,new.data_fim,new.data_inicio)>0) THEN
 CALL raise_error;
-
 END if;
-
-
 END; //
-
 delimiter ;
+

@@ -1,6 +1,3 @@
-
-
-
 DROP TRIGGER if exists lastState;
 
 delimiter //

@@ -1,10 +1,9 @@
 <html>
     <body>
-    <h3>Remove Posto</h3>
+    <h3>Cria oferta - Escolher Alugavel - Parte 3</h3>
 <?php
     try
     {
-		$type = $_REQUEST['type'];
 		$morada = $_REQUEST['morada'];
 		$codigo_espaco = $_REQUEST['codigo_espaco'];
 		require 'bd_init.php';    
@@ -15,10 +14,10 @@
         {
             echo("<tr>\n");
             echo("<td>{$row['codigo']}</td>\n");
-            echo("<td><a href=\"remove_confirm.php?type=$type&morada=$morada&codigo_espaco=$codigo_espaco&codigo={$row['codigo']}\">Select</a></td>\n");
+            echo("<td><a href=\"cria_oferta_p4.php?type=$type&morada=$morada&codigo={$row['codigo']}\">Select</a></td>\n");
             echo("</tr>\n");
         }
-        echo("<td><a href=\"remove_confirm.php?type=$type&morada=$morada&codigo_espaco=null&codigo=$codigo_espaco\">GO</a></td>\n");
+        echo("<td><a href=\"cria_oferta_p4.php?type=$type&morada=$morada&codigo_espaco=null&codigo=$codigo_espaco\">GO</a></td>\n");
         echo("</table>\n");
         $db = null;
 				echo("<td><a href=\"home.php\">HOME</a></td>\n");

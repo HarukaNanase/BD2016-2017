@@ -1,10 +1,9 @@
 <html>
     <body>
-    <h3>Espaco</h3>
+    <h3>Cria oferta - Escolher Alugavel - Parte 2</h3>
 <?php
     try
     {
-		$type = $_REQUEST['type'];
 		$morada = $_REQUEST['morada'];
 		require 'bd_init.php';
         $sql = "SELECT espaco.codigo FROM espaco WHERE espaco.morada='$morada';";    
@@ -14,13 +13,12 @@
         {
             echo("<tr>\n");
             echo("<td>{$row['codigo']}</td>\n");
-            echo("<td><a href=\"remove_posto.php?type=$type&morada=$morada&codigo_espaco={$row['codigo']}\">Select</a></td>\n");
+            echo("<td><a href=\"cria_oferta_p3.php?type=$type&morada=$morada&codigo_espaco={$row['codigo']}\">Select</a></td>\n");
             echo("</tr>\n");
         }
-        echo("<td><a href=\"remove_confirm.php?type=$type&morada=$morada&codigo_espaco=null&codigo=null\">GO</a></td>\n");
         echo("</table>\n");    
         $db = null;
-				echo("<td><a href=\"home.php\">HOME</a></td>\n");
+		echo("<td><a href=\"home.php\">HOME</a></td>\n");
     }
     catch (PDOException $e)
     {

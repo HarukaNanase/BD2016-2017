@@ -164,7 +164,7 @@
 					}
 				}
 				
-				echo("<td><a href=\"remove.php\">HOME</a></td>\n");
+				echo("<td><a href=\"home.php\">HOME</a></td>\n");
 			}
 			catch (PDOException $e){
 				echo("<p>ERROR: {$e->getMessage()}</p>");

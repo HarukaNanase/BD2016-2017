@@ -1,10 +1,9 @@
 <html>
     <body>
-    <h3>remove Edificio</h3>
+    <h3>Cria oferta - Escolher Alugavel - Parte 1</h3>
 		<?php
 			try
 			{
-				$type = $_REQUEST['type'];
 				require 'bd_init.php';			
 				$sql = "SELECT edificio.morada FROM edificio;";			
 				$result = $db->query($sql);
@@ -13,7 +12,7 @@
 				{
 					echo("<tr>\n");
 					echo("<td>{$row['morada']}</td>\n");
-					echo("<td><a href=\"remove_espaco.php?type=$type&morada={$row['morada']}\">Select</a></td>\n");
+					echo("<td><a href=\"cria_oferta_p2.php?type=$type&morada={$row['morada']}\">Select</a></td>\n");
 					echo("</tr>\n");
 				}
 				echo("</table>\n");			
@@ -27,4 +26,3 @@
 		?>
 	</body>
 </html>
-        

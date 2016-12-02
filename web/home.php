@@ -4,11 +4,16 @@
 	<?php
 		try
 		{
+			
+			$logfile = fopen(".log", "a");
+			fwrite($logfile, "- - - - - - - - - -");
+			fclose($logfile);
+			
 			echo("<table border=\"0\" cellspacing=\"5\">\n");
 				echo("<tr>\n");
 				echo("<td><a href=\"remove_local.php\">remove local</a></td>\n");
 				echo("<td><a href=\"home.php\">insere local</a></td>\n");
-				echo("<td><a href=\"home.php\">cria oferta</a></td>\n");
+				echo("<td><a href=\"cria_oferta_p1.php\">cria oferta</a></td>\n");
 				echo("<td><a href=\"remove_oferta.php\">remove oferta</a></td>\n");
 				echo("<td><a href=\"cria_reserva_p1.php\">cria reserva</a></td>\n");
 				echo("<td><a href=\"home.php\">pagar reserva</a></td>\n");

@@ -7,12 +7,10 @@
 				$codigo = $_REQUEST['codigo'];	
 				$data_inicio = $_REQUEST['data_inicio'];
 				$nif = $_REQUEST['nif'];
-				echo " 1 ";
 				require 'get_next_num.php';
-				echo " 2 ";
 				require 'bd_init.php';
 				$sql="INSERT INTO reserva VALUES ('$numero');";
-				require 'run_sql';
+				require 'run_sql.php';
 				require 'bd_init.php';
 				$sql="INSERT INTO aluga VALUES ('$morada', '$codigo', '$data_inicio', '$nif', '$numero');";
 				require 'run_sql.php';

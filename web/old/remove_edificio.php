@@ -4,7 +4,7 @@
 		<?php
 			try
 			{
-				$type = $_REQUEST['type'];
+				$type = $_POST['type'];
 				require 'bd_init.php';			
 				$sql = "SELECT edificio.morada FROM edificio;";			
 				$result = $db->query($sql);

@@ -1,6 +1,6 @@
 <html>
     <body>
-    <h3>remove Edificio</h3>
+    <h3>Escolher Edificio</h3>
 		<?php
 			try
 			{
@@ -13,7 +13,7 @@
 				{
 					echo("<tr>\n");
 					echo("<td>{$row['morada']}</td>\n");
-					echo("<td><a href=\"procurar_p2.php?morada={$row['morada']}\">Select</a></td>\n");
+					echo("<td><a href=\"procurar_p2.php?type=$type&morada={$row['morada']}\">Select</a></td>\n");
 					echo("</tr>\n");
 				}
 				echo("</table>\n");			
@@ -27,4 +27,3 @@
 		?>
 	</body>
 </html>
-        

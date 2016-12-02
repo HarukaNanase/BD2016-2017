@@ -9,7 +9,7 @@
 			fwrite($logfile, "- - - - - - - - - -");
 			fclose($logfile);
 			
-			echo("<table border=\"0\" cellspacing=\"5\">\n");
+			echo("<table border=\"2\" cellspacing=\"5\">\n");
 				echo("<tr>\n");
 				echo("<td><a href=\"remove_local.php\">remove local</a></td>\n");
 				echo("<td><a href=\"cria_local_p1.php\">insere local</a></td>\n");
@@ -17,7 +17,7 @@
 				echo("<td><a href=\"remove_oferta.php\">remove oferta</a></td>\n");
 				echo("<td><a href=\"cria_reserva_p1.php\">cria reserva</a></td>\n");
 				echo("<td><a href=\"pagar_reserva_p1.php\">pagar reserva</a></td>\n");
-				echo("<td><a href=\"home.php\">procurar</a></td>\n");
+				echo("<td><a href=\"procurar_p1.php\">procurar</a></td>\n");
 				echo("</tr>\n");
 			echo("</table>\n");
 		}

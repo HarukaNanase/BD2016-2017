@@ -10,7 +10,7 @@
 				echo("<td><a href=\"home.php\">insere local</a></td>\n");
 				echo("<td><a href=\"home.php\">cria oferta</a></td>\n");
 				echo("<td><a href=\"remove_oferta.php\">remove oferta</a></td>\n");
-				echo("<td><a href=\"home.php\">cria reserva</a></td>\n");
+				echo("<td><a href=\"cria_reserva_p1.php\">cria reserva</a></td>\n");
 				echo("<td><a href=\"home.php\">pagar reserva</a></td>\n");
 				echo("<td><a href=\"home.php\">procurar</a></td>\n");
 				echo("</tr>\n");
